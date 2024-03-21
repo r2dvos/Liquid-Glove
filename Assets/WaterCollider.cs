@@ -6,11 +6,19 @@ using UnityEngine;
 public class WaterCollider : MonoBehaviour
 {
     private List<string> fingers = new List<string>();
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("FingerTip"))
         {
             fingers.Add(other.name);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("FingerTip"))
+        {
+            fingers.Remove(other.name);
         }
     }
 
@@ -22,6 +30,6 @@ public class WaterCollider : MonoBehaviour
             result += f.ToString() + ", ";
         }
         Debug.Log(result);
-        fingers.Clear();
+        //fingers.Clear();
     }
 }

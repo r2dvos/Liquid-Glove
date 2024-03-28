@@ -8,9 +8,10 @@ public class WaterCollider : MonoBehaviour
     private List<string> fingers = new List<string>();
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("FingerTip"))
         {
-            fingers.Add(other.name);
+            fingers.Add(Rename(other.name));
         }
     }
 
@@ -18,7 +19,7 @@ public class WaterCollider : MonoBehaviour
     {
         if (other.CompareTag("FingerTip"))
         {
-            fingers.Remove(other.name);
+            fingers.Remove(Rename(other.name));
         }
     }
 
@@ -31,5 +32,22 @@ public class WaterCollider : MonoBehaviour
         }
         Debug.Log(result);
         //fingers.Clear();
+    }
+
+    string Rename(string name)
+    {
+        switch (name)
+        {
+            case "hands:b_r_middle3":
+                return "1";
+            case "hands:b_r_middle2":
+                return "2";
+            case "hands:Rhand":
+                return "3";
+            default:   // shouldnt happen
+                return name;
+        }
+            
+
     }
 }
